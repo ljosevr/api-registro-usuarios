@@ -143,6 +143,13 @@ app.jwt.expiration=86400000
 - **Email**: Formato estándar de correo electrónico (configurable)
 - **Password**: Al menos una mayúscula, una minúscula y un dígito (configurable)
 
+### Scripts de Base de Datos
+
+El proyecto incluye scripts SQL para diferentes bases de datos:
+- **[H2 Database](sql/schema-h2.sql)** (por defecto)
+
+**Nota**: H2 crea las tablas automáticamente usando JPA. Los scripts son útiles para migrar a PostgreSQL o MySQL.
+
 ---
 ## API Endpoints
 
