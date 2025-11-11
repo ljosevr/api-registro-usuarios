@@ -100,6 +100,8 @@ curl -X POST http://localhost:8080/api/users/register \
 #### Opción B: Con Swagger UI
 Abre en tu navegador: http://localhost:8080/swagger-ui/index.html
 
+**Nota**: Asegúrate de que la aplicación esté corriendo (`./gradlew bootRun`).
+
 #### Opción C: Con script de pruebas
 ```bash
 chmod +x test-api.sh

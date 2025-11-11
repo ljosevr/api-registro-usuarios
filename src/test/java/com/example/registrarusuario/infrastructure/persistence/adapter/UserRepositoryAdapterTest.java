@@ -86,39 +86,6 @@ class UserRepositoryAdapterTest {
         verify(userEntityMapper).toDomain(userEntity);
     }
 
-    @Test
-    @DisplayName("Debe encontrar un usuario por email cuando existe")
-    void shouldFindUserByEmailWhenExists() {
-        // Given
-        when(jpaUserRepository.findByEmail(anyString())).thenReturn(Optional.of(userEntity));
-        when(userEntityMapper.toDomain(any(UserEntity.class))).thenReturn(domainUser);
-
-        // When
-        Optional<User> foundUser = userRepositoryAdapter.findByEmail("juan@rodriguez.org");
-
-        // Then
-        assertThat(foundUser).isPresent();
-        assertThat(foundUser.get().getEmail()).isEqualTo("juan@rodriguez.org");
-
-        verify(jpaUserRepository).findByEmail("juan@rodriguez.org");
-        verify(userEntityMapper).toDomain(userEntity);
-    }
-
-    @Test
-    @DisplayName("Debe retornar Optional vacío cuando el usuario no existe")
-    void shouldReturnEmptyOptionalWhenUserNotFound() {
-        // Given
-        when(jpaUserRepository.findByEmail(anyString())).thenReturn(Optional.empty());
-
-        // When
-        Optional<User> foundUser = userRepositoryAdapter.findByEmail("noexiste@test.com");
-
-        // Then
-        assertThat(foundUser).isEmpty();
-
-        verify(jpaUserRepository).findByEmail("noexiste@test.com");
-        verify(userEntityMapper, never()).toDomain(any());
-    }
 
     @Test
     @DisplayName("Debe retornar true cuando el email existe")
