@@ -31,10 +31,7 @@ cd api-registro-usuarios
    openssl rand -base64 64
    ```
    
-   Copia el resultado (ejemplo):
-   ```
-   kX8ZmP2vQ9wR5tY7uI3oP6aS4dF1gH8jK0lM9nB2vC5xZ3aW7eR4tY6uI8oP1qA2sD3fG5hJ7kL0zX9cV2bN4mQ6wE8rT1yU3iO5pA7sD9fG2hJ4kL6zX8cV0bN1mQ3wE5rT7yU9iO0pA==
-   ```
+   Esto generará un string aleatorio seguro. Cópialo.
 
 3. **Editar el archivo .env** y agregar tu secret:
    ```bash
@@ -48,7 +45,7 @@ cd api-registro-usuarios
 
    Contenido del archivo .env:
    ```properties
-   JWT_SECRET=kX8ZmP2vQ9wR5tY7uI3oP6aS4dF1gH8jK0lM9nB2vC5xZ3aW7eR4tY6uI8oP1qA2sD3fG5hJ7kL0zX9cV2bN4mQ6wE8rT1yU3iO5pA7sD9fG2hJ4kL6zX8cV0bN1mQ3wE5rT7yU9iO0pA==
+   JWT_SECRET=pega-aqui-el-secret-que-generaste-con-openssl
    JWT_EXPIRATION=86400000
    ```
 
