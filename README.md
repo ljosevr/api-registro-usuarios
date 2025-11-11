@@ -3,6 +3,145 @@
 ## Descripción
 API REST para registro de usuarios implementada con Spring Boot, siguiendo arquitectura hexagonal y principios SOLID.
 
+---
+
+## 🚀 Inicio Rápido
+
+### Prerrequisitos
+- Java 17 o superior
+- Git
+
+### Paso 1: Clonar el Repositorio
+```bash
+git clone https://github.com/ljosevr/api-registro-usuarios.git
+cd api-registro-usuarios
+```
+
+### Paso 2: Configurar Variables de Entorno (JWT Secret)
+
+#### Opción A: Con archivo .env (Recomendado)
+
+1. **Crear archivo .env** desde la plantilla:
+   ```bash
+   cp .env.example .env
+   ```
+
+2. **Generar un JWT secret seguro**:
+   ```bash
+   openssl rand -base64 64
+   ```
+   
+   Copia el resultado (ejemplo):
+   ```
+   kX8ZmP2vQ9wR5tY7uI3oP6aS4dF1gH8jK0lM9nB2vC5xZ3aW7eR4tY6uI8oP1qA2sD3fG5hJ7kL0zX9cV2bN4mQ6wE8rT1yU3iO5pA7sD9fG2hJ4kL6zX8cV0bN1mQ3wE5rT7yU9iO0pA==
+   ```
+
+3. **Editar el archivo .env** y agregar tu secret:
+   ```bash
+   # Abrir con tu editor favorito
+   nano .env
+   # o
+   vim .env
+   # o
+   code .env
+   ```
+
+   Contenido del archivo .env:
+   ```properties
+   JWT_SECRET=kX8ZmP2vQ9wR5tY7uI3oP6aS4dF1gH8jK0lM9nB2vC5xZ3aW7eR4tY6uI8oP1qA2sD3fG5hJ7kL0zX9cV2bN4mQ6wE8rT1yU3iO5pA7sD9fG2hJ4kL6zX8cV0bN1mQ3wE5rT7yU9iO0pA==
+   JWT_EXPIRATION=86400000
+   ```
+
+4. **Guardar y cerrar** el archivo
+
+#### Opción B: Variable de entorno en terminal (Temporal)
+
+```bash
+export JWT_SECRET="tu-secret-generado-con-openssl-aqui"
+```
+
+#### Opción C: Para pruebas rápidas (Solo desarrollo local)
+
+Puedes omitir este paso. La aplicación usará un valor por defecto:
+```
+changeme-only-for-local-development
+```
+⚠️ **NUNCA uses este valor en producción**
+
+### Paso 3: Compilar el Proyecto
+```bash
+./gradlew clean build
+```
+
+**Resultado esperado**:
+```
+BUILD SUCCESSFUL
+43 tests passed ✅
+```
+
+### Paso 4: Ejecutar la Aplicación
+```bash
+./gradlew bootRun
+```
+
+**La aplicación estará disponible en**: http://localhost:8080
+
+### Paso 5: Verificar que Funciona
+
+#### Opción A: Con curl
+```bash
+curl -X POST http://localhost:8080/api/users/register \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Juan Rodriguez",
+    "email": "juan@test.com",
+    "password": "Hunter2",
+    "phones": [{"number": "1234567", "citycode": "1", "contrycode": "57"}]
+  }'
+```
+
+#### Opción B: Con Swagger UI
+Abre en tu navegador: http://localhost:8080/swagger-ui/index.html
+
+#### Opción C: Con script de pruebas
+```bash
+chmod +x test-api.sh
+./test-api.sh
+```
+
+### Paso 6: Acceder a H2 Console (Opcional)
+- **URL**: http://localhost:8080/h2-console
+- **JDBC URL**: `jdbc:h2:mem:testdb`
+- **Usuario**: `sa`
+- **Password**: (dejar vacío)
+
+---
+
+## 🎯 Resumen de Comandos
+
+```bash
+# 1. Clonar
+git clone https://github.com/ljosevr/api-registro-usuarios.git
+cd api-registro-usuarios
+
+# 2. Configurar JWT (opcional para desarrollo)
+cp .env.example .env
+# Editar .env con tu secret generado
+
+# 3. Compilar
+./gradlew clean build
+
+# 4. Ejecutar
+./gradlew bootRun
+
+# 5. Probar
+curl -X POST http://localhost:8080/api/users/register \
+  -H "Content-Type: application/json" \
+  -d '{"name":"Test","email":"test@example.com","password":"Test123","phones":[{"number":"123","citycode":"1","contrycode":"57"}]}'
+```
+
+---
+
 ## Tecnologías Utilizadas
 - Java 17
 - Spring Boot 3.5.7
